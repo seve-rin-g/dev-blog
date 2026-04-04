@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Using Saleor for Open-Source e-commerce site",
+      "category" : "",
+      "tags"     : "Software Development, e-Commerce, Saleor, GraphQL, Next.js",
+      "url"      : "/dev-blog/blog/saleor-first-pass",
+      "date"     : "2026-03-26 00:00:00 -0700"
+    } ,
+  
+    {
       "title"    : "Learn React.js in 5 minutes",
       "category" : "",
       "tags"     : "React, JavaScript, Web Development",

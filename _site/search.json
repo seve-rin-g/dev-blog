@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Host Saleor on AWS",
+      "category" : "",
+      "tags"     : "Software Development, e-Commerce, Saleor, GraphQL, Next.js, AWS",
+      "url"      : "/dev-blog/blog/host-saleor-on-aws",
+      "date"     : "2026-04-04 15:58:00 -0700"
+    } ,
+  
+    {
       "title"    : "Using Saleor for Open-Source e-commerce site",
       "category" : "",
       "tags"     : "Software Development, e-Commerce, Saleor, GraphQL, Next.js",

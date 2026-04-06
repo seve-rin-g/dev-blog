@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<!--
+  portfolYOU Jekyll theme by yousinix
+  Free for personal and commercial use under the MIT license
+  https://github.com/yousinix/portfolYOU
+-->
+
+<html lang="en" class="h-100">
+
+<head>
+
+  
+  
+  
+
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Using Saleor for Open-Source e-commerce site">
+  <meta property="og:description" content="goal is to make a site for a's leatherworking with pricing and cart integration">
+  <meta property="og:image" content="/assets/images/angel.jpg">
+
+  <title>Using Saleor for Open-Source e-commerce site</title>
+  <meta name="description" content="goal is to make a site for a's leatherworking with pricing and cart integration">
+
+  <link rel="shortcut icon" type="image/x-icon" href="/dev-blog/assets/favicon.ico">
+
+  <!-- Theme style -->
+  <script src="/dev-blog/assets/js/theme.js"></script>
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+
+  <!-- Animate CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/dev-blog/assets/css/style.css">
+
+</head>
+
+
+<body class="h-100 d-flex flex-column">
+
+  <main class="flex-shrink-0 container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-themed">
+
+  <a class="navbar-brand" href="/dev-blog/"><h5><b>Sev/Rin dev blog</b></h5></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-1x fa-bars text-themed"></i>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto"><a class="nav-item nav-link " href="/dev-blog/projects/">Projects</a>
+
+      <a class="nav-item nav-link active" href="/dev-blog/blog/">Blog</a>
+
+      <a class="nav-item nav-link " href="/dev-blog/about/">About</a>
+
+      
+
+      <span id="theme-toggler" class="nav-item nav-link" role="button" onclick="toggleTheme()"></span>
+    </div>
+  </div>
+
+</nav>
+    <div class="col-lg-10 mx-auto mt-5 markdown-body">
+  <h1><b>Using Saleor for Open-Source e-commerce site</b></h1>
+
+<p class="post-metadata text-muted">
+  26 March 2026 -  
+  <b>2 mins read time</b>
+
+  <br>Tags: 
+    
+    <a class="text-decoration-none no-underline" href="/dev-blog/blog/tags#software-development">
+      <span class="tag badge badge-pill text-primary border border-primary">Software Development</span>
+    </a>
+    
+    <a class="text-decoration-none no-underline" href="/dev-blog/blog/tags#e-commerce">
+      <span class="tag badge badge-pill text-primary border border-primary">e-Commerce</span>
+    </a>
+    
+    <a class="text-decoration-none no-underline" href="/dev-blog/blog/tags#saleor">
+      <span class="tag badge badge-pill text-primary border border-primary">Saleor</span>
+    </a>
+    
+    <a class="text-decoration-none no-underline" href="/dev-blog/blog/tags#graphql">
+      <span class="tag badge badge-pill text-primary border border-primary">GraphQL</span>
+    </a>
+    
+    <a class="text-decoration-none no-underline" href="/dev-blog/blog/tags#next-js">
+      <span class="tag badge badge-pill text-primary border border-primary">Next.js</span>
+    </a>
+    </p>
+
+<h1 id="first-project-with-saleor">First project with Saleor</h1>
+
+<p>My goal is to make a site for A’s leatherworking that can function like both a portfolio and an avenue for purchases (with pricing and cart integration). This is my first e-commerce site outside of using a platform like BigCartel for other merch vendors.</p>
+
+<p>(Saleor is a GraphQL native, API-only platform for scalable composable commerce.)</p>
+
+<p>I ultimately want to host on AWS, but doing this locally for now.</p>
+
+<h2 id="result">Result</h2>
+
+<p><img src="http://localhost:4000/dev-blog/assets/images/saleor-local-frontend.jpg" alt="result" /></p>
+
+<p>This worked well and the Docker container runs locally.</p>
+
+<p>Next steps:</p>
+<ol>
+  <li>Deploy to AWS</li>
+  <li>Set up Payment integration with Stripe or Paypal</li>
+</ol>
+
+<h2 id="backend-setup">Backend setup</h2>
+
+<p>I followed the walkthrough from https://docs.saleor.io/quickstart/running-locally</p>
+
+<blockquote>
+  <p>Add the cloned saleor-platform directory to the list of shared directories in Docker (Settings -&gt; Shared Drives or Preferences -&gt; Resources -&gt; File sharing).</p>
+</blockquote>
+
+<p>(This step failed without a pro account, but I was able to proceed to the end.)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/saleor/saleor-platform.git
+cd saleor-platform
+docker compose pull
+</code></pre></div></div>
+
+<p>Apply database migrations:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker compose run --rm api python3 manage.py migrate
+</code></pre></div></div>
+
+<p>Optionally, populate the database with sample data:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker compose run --rm api python3 manage.py populatedb
+</code></pre></div></div>
+
+<p>Finally, create an admin account:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker compose run --rm api python3 manage.py createsuperuser
+</code></pre></div></div>
+
+<p>(Note: in the docs, the createsuperuser step above is supposed to set admin@example.com and admin automatically, but for me it prompted in terminal to enter an email and password.
+)</p>
+
+<p>Run app via <code class="language-plaintext highlighter-rouge">docker compose up</code></p>
+
+<p>Now the backend is running (default http://localhost:9000), which includes a dashboard that the vendor would use to track purchases, shipping status, and update items in the DB.</p>
+
+<h2 id="how-to-setup-frontend">How to Setup Frontend</h2>
+
+<p>Saleor also has a feature called <a href="https://github.com/saleor/storefront?tab=readme-ov-file">storefront</a> which you can use as the shop frontend (or you could use a different frontend as long as you connect to the Saleor GraphQL API).</p>
+
+<h3 id="modified-env">Modified <code class="language-plaintext highlighter-rouge">.env</code></h3>
+
+<p>I edited the frontend <code class="language-plaintext highlighter-rouge">.env</code> file to refer to my local graphql deployment.</p>
+
+<h3 id="installed-nextjs">Installed Next.js</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>corepack enable pnpm
+pnpm install
+</code></pre></div></div>
+<h3 id="run-frontend-in-dev-mode">Run frontend in dev mode</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pnpm dev
+</code></pre></div></div>
+
+<p>When adding a new product to the backend, it won’t show up in the frontend until it’s enabled as “viewable”.</p>
+
+<p>Error with to fix “⨯ upstream image http://localhost:1337/uploads/image.png resolved to private ip [”::1”,”127.0.0.1”]” – this wouldn’t be an issue when deployed.</p>
+
+<p>CORS workaround I used for development:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>images: {
+    dangerouslyAllowLocalIP: true,
+}
+</code></pre></div></div>
+
+<p>Now I have local frontend and backend integration.</p>
+
+
+
+</div>
+  </main>
+  <footer class="mt-auto py-3 text-center">
+
+  <small class="text-muted mb-2">
+    <i class="fas fa-code"></i> with <i class="fas fa-heart"></i>
+    by <strong>Rin G</strong>
+  </small>
+
+  <div class="container-fluid justify-content-center"><a class="social mx-1"  href="https://www.github.com/your_username"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#333333'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-github fa-1x"></i>
+    </a><a class="social mx-1"  href="https://www.linkedin.com/in/your_username"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#007bb5'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-linkedin-in fa-1x"></i>
+    </a>
+
+</div><small id="attribution">
+    theme <a href="https://github.com/yousinix/portfolYOU">portfolYOU</a>
+  </small>
+
+</footer>
+
+  
+  <!-- GitHub Buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- jQuery CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- wow.js CDN & Activation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+<script> new WOW().init(); </script>
+
+<!-- Initialize all tooltips -->
+<script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+</body>
+
+</html>

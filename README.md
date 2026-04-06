@@ -1,2 +1,2 @@
 # rin blog 
-empty dev blog for viz work
+static-site/jekyll blog of dev work

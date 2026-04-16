@@ -3,7 +3,6 @@ name: Anasyrma Angel
 tools: [Python, Docker]
 image: /assets/images/angel.jpg
 description: Portfolio and E-commerce site for local couture/leather/bag designer
-external_url: https://github.com/seve-rin-g
 ---
 
 # Anasyrma Angel
